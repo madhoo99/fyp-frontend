@@ -7,6 +7,7 @@ function DrawingArea() {
   const [lastY, setLastY] = useState(0);
 
   function handleTouchStart(e) {
+    e.preventDefault();
     const touch = e.touches[0];
     setIsDrawing(true);
     setLastX(touch.clientX);
@@ -14,6 +15,7 @@ function DrawingArea() {
   }
 
   function handleTouchMove(e) {
+    e.preventDefault();
     if (!isDrawing) return;
     const touch = e.touches[0];
     const ctx = canvasRef.current.getContext('2d');
@@ -51,7 +53,7 @@ function DrawingArea() {
   }
 
   return (
-    <div style={{overscrollBehavior : 'contain'}}>
+    <div style={{overscrollBehavior : 'contain', overflow : 'hidden'}}>
       <canvas
         ref={canvasRef}
         width={400}
