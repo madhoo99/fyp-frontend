@@ -6,25 +6,48 @@ function DrawingArea() {
   const [lastX, setLastX] = useState(0);
   const [lastY, setLastY] = useState(0);
 
-  function handleMouseDown(e) {
+  function handleTouchStart(e) {
+    const touch = e.touches[0];
     setIsDrawing(true);
-    setLastX(e.nativeEvent.offsetX);
-    setLastY(e.nativeEvent.offsetY);
+    setLastX(touch.clientX);
+    setLastY(touch.clientY);
   }
 
-  function handleMouseMove(e) {
+  function handleTouchMove(e) {
     if (!isDrawing) return;
+    const touch = e.touches[0];
     const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
-    ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+    ctx.lineTo(touch.clientX, touch.clientY);
     ctx.stroke();
-    setLastX(e.nativeEvent.offsetX);
-    setLastY(e.nativeEvent.offsetY);
+    setLastX(touch.clientX);
+    setLastY(touch.clientY);
   }
 
-  function handleMouseUp() {
+  function handleTouchEnd() {
     setIsDrawing(false);
+  }
+
+  function handleSave() {
+    const canvas = canvasRef.current;
+    const dataUrl = canvas.toDataURL();
+    const data = { image: dataUrl };
+
+    // Send the data to the server using fetch or an AJAX request
+    fetch('/save', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   return (
@@ -33,10 +56,11 @@ function DrawingArea() {
         ref={canvasRef}
         width={400}
         height={400}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       />
+      <button onClick={handleSave}>Save</button>
     </div>
   );
 }
