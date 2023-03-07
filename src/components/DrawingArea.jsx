@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react';
+import { Navigate, useNavigate } from "react-router-dom";
 
-function DrawingArea() {
+function DrawingArea(props) {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lastX, setLastX] = useState(0);
   const [lastY, setLastY] = useState(0);
+  const navigate = useNavigate();
+
 
   function handleTouchStart(e) {
     e.preventDefault();
@@ -37,19 +40,21 @@ function DrawingArea() {
     const data = { image: dataUrl };
 
     // Send the data to the server using fetch or an AJAX request
-    fetch('/save', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    // fetch('/save', {
+    //   method: 'POST',
+    //   body: JSON.stringify(data),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
+    //   .then(response => {
+    //     console.log(response);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
+
+    navigate(props.endRoute);
   }
 
   return (
@@ -62,7 +67,7 @@ function DrawingArea() {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       />
-      <button onClick={handleSave}>Save</button>
+      <button onClick={handleSave}>Draw</button>
     </div>
   );
 }
