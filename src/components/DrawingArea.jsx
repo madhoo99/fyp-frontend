@@ -19,10 +19,10 @@ function DrawingArea() {
     const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
-    ctx.lineTo(touch.clientX, touch.clientY + 80);
+    ctx.lineTo(touch.clientX, touch.clientY - 80);
     ctx.stroke();
     setLastX(touch.clientX);
-    setLastY(touch.clientY + 80);
+    setLastY(touch.clientY - 80);
   }
 
   function handleTouchEnd() {
