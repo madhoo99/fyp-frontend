@@ -51,7 +51,7 @@ function DrawingArea() {
   }
 
   return (
-    <div style={{overscrollBehavior : contain}}>
+    <div style={{overscrollBehavior : 'contain'}}>
       <canvas
         ref={canvasRef}
         width={400}
