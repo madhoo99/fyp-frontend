@@ -34,25 +34,48 @@ function DrawingArea(props) {
     setIsDrawing(false);
   }
 
+  function handleMouseDown(e) {
+    setIsDrawing(true);
+    setLastX(e.nativeEvent.offsetX);
+    setLastY(e.nativeEvent.offsetY);
+  }
+
+  function handleMouseMove(e) {
+    if (!isDrawing) return;
+    const ctx = canvasRef.current.getContext('2d');
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+    ctx.stroke();
+    setLastX(e.nativeEvent.offsetX);
+    setLastY(e.nativeEvent.offsetY);
+  }
+
+  function handleMouseUp() {
+    setIsDrawing(false);
+  }
+
   function handleSave() {
     const canvas = canvasRef.current;
     const dataUrl = canvas.toDataURL();
     const data = { image: dataUrl };
+    console.log(data)
 
     // Send the data to the server using fetch or an AJAX request
-    // fetch('/save', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    //   .then(response => {
-    //     console.log(response);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
+    fetch('http://localhost:8000/save', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      //body: 'testing',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
 
     navigate(props.endRoute);
   }
@@ -66,6 +89,9 @@ function DrawingArea(props) {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
       />
       <button onClick={handleSave}>Draw</button>
     </div>

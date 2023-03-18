@@ -15,7 +15,7 @@ function Draw() {
     };
 
     return <div>
-        <SmallPrompt text={'Draw something that reminds you of your childhood.'} relativeSize='3' />
+        <SmallPrompt text={'Draw something that reminds you of your childhood.'} relativeSize='4' />
         {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
         <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
         <DrawingArea endRoute={'/drawQR'} height={400} width={windowSize.current[0]} />
