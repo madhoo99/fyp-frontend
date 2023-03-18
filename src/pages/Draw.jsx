@@ -1,6 +1,7 @@
 import HomeButton from "../components/HomeButton"
 import { Navigate, useNavigate } from "react-router-dom";
 import DrawingArea from "../components/DrawingArea";
+import { useRef } from 'react';
 
 function Draw() {
 
