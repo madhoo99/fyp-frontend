@@ -16,6 +16,7 @@ return <div>
     </Route> */}
     <Route exact path="/lights" element={<Lights />} />
     <Route exact path="/sounds" element={<Sounds />} />
+    <Route exact path="/draw" element={<Draw />} />
     </Routes>
 </div>
 }
