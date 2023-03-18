@@ -2,7 +2,7 @@ import HomeButton from "../components/HomeButton"
 import { Navigate, useNavigate } from "react-router-dom";
 import DrawingArea from "../components/DrawingArea";
 
-function Home() {
+function Draw() {
 
     const navigate = useNavigate();
 
@@ -14,8 +14,8 @@ function Home() {
         <h1>Draw something that reminds you of your childhood.</h1>
         {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
         <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
-        <DrawingArea endRoute={'/drawQR'}/>
+        <DrawingArea endRoute={'/drawQR'} height={400} width={400} />
     </div>;
 }
 
-export default Home;
+export default Draw;

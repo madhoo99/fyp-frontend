@@ -61,8 +61,8 @@ function DrawingArea(props) {
     <div style={{overscrollBehavior : 'contain', overflow : 'hidden'}}>
       <canvas
         ref={canvasRef}
-        width={400}
-        height={400}
+        width={props.width}
+        height={props.height}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
