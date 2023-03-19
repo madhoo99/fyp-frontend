@@ -9,12 +9,13 @@ import { Navigate } from "react-router-dom";
 function CustomRoutes() {
 return <div>
     <Routes>
-    <Route exact path="/Home" element={<Home />} />
+    <Route exact path="/home" element={<Home />} />
+    <Route exact path="/draw" element={<Draw />} />
     {/* <Route exact path="/">
         <Navigate to="/Home" replace={true} />
     </Route> */}
-    <Route exact path="/Lights" element={<Lights />} />
-    <Route exact path="/Sounds" element={<Sounds />} />
+    <Route exact path="/lights" element={<Lights />} />
+    <Route exact path="/sounds" element={<Sounds />} />
     <Route exact path="/draw" element={<Draw />} />
     </Routes>
 </div>
