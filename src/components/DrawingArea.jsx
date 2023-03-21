@@ -29,6 +29,9 @@ function DrawingArea(props) {
     ctx.stroke();
     setLastX(touch.clientX);
     setLastY(touch.clientY - 140);
+    ctx.beginPath();
+    ctx.arc(lastX, lastY, 5, 0, 360);
+    ctx.fill();
   }
 
   function handleTouchEnd() {
@@ -54,7 +57,6 @@ function DrawingArea(props) {
     ctx.beginPath();
     ctx.arc(lastX, lastY, 5, 0, 360);
     ctx.fill();
-
   }
 
   function handleMouseUp() {
