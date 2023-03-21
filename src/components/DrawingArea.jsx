@@ -51,6 +51,10 @@ function DrawingArea(props) {
     ctx.stroke();
     setLastX(e.nativeEvent.offsetX);
     setLastY(e.nativeEvent.offsetY);
+    ctx.beginPath();
+    ctx.arc(lastX, lastY, 5, 0, 360);
+    ctx.fill();
+
   }
 
   function handleMouseUp() {
