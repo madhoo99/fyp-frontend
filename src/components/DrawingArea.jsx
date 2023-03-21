@@ -23,6 +23,7 @@ function DrawingArea(props) {
     const touch = e.touches[0];
     const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
+    ctx.lineWidth = 10;
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(touch.clientX, touch.clientY - 140);
     ctx.stroke();
@@ -44,6 +45,7 @@ function DrawingArea(props) {
     if (!isDrawing) return;
     const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
+    ctx.lineWidth = 10;
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     ctx.stroke();

@@ -11,19 +11,19 @@ function Lights() {
         navigate(endRoute);
     };
 
-    var emojis = ["happy.png"]
+    // var emojis = ["happy.png"]
 
-    var [emojisState, setEmojisState] = useState([false, false, false, false, false, false, false, false, false, false, false])
+    // var [emojisState, setEmojisState] = useState([false, false, false, false, false, false, false, false, false, false, false])
 
-    function renderEmojis(id) {
-        newEmojisState = emojisState
-        for elem in newEmojisState : 
-            elem = false
-        newEmojisState[id] = true
-        setEmojisState(newEmojisState)
+    // function renderEmojis(id) {
+    //     newEmojisState = emojisState
+    //     for elem in newEmojisState : 
+    //         elem = false
+    //     newEmojisState[id] = true
+    //     setEmojisState(newEmojisState)
 
 
-    }
+    // }
 
     // var lights = ["red", "maroon", "orange", "gold", "turquoise", "sea-green", "indigo", "blue", "navy-blue", "purple", "pink"];
 

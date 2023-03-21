@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './pages/Home';
-import Lights from './pages/Lights';
+// import Lights from './pages/Lights';
 import Sounds from './pages/Sounds';
 import Draw from './pages/Draw';
 import { Route, Routes} from 'react-router-dom';
@@ -14,7 +14,7 @@ return <div>
     {/* <Route exact path="/">
         <Navigate to="/Home" replace={true} />
     </Route> */}
-    <Route exact path="/lights" element={<Lights />} />
+    {/* <Route exact path="/lights" element={<Lights />} /> */}
     <Route exact path="/sounds" element={<Sounds />} />
     <Route exact path="/draw" element={<Draw />} />
     </Routes>
