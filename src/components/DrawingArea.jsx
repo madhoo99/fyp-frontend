@@ -23,14 +23,14 @@ function DrawingArea(props) {
     const touch = e.touches[0];
     const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
-    ctx.lineWidth = 10;
+    ctx.lineWidth = props.lineWidth;
     ctx.moveTo(lastX, lastY);
-    ctx.lineTo(touch.clientX, touch.clientY - 140);
+    ctx.lineTo(touch.clientX, touch.clientY);
     ctx.stroke();
     setLastX(touch.clientX);
-    setLastY(touch.clientY - 140);
+    setLastY(touch.clientY);
     ctx.beginPath();
-    ctx.arc(lastX, lastY, 5, 0, 360);
+    ctx.arc(lastX, lastY, Math.ceil(props.lineWidth/2), 0, 360);
     ctx.fill();
   }
 
@@ -48,14 +48,14 @@ function DrawingArea(props) {
     if (!isDrawing) return;
     const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
-    ctx.lineWidth = 10;
+    ctx.lineWidth = props.lineWidth;
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     ctx.stroke();
     setLastX(e.nativeEvent.offsetX);
     setLastY(e.nativeEvent.offsetY);
     ctx.beginPath();
-    ctx.arc(lastX, lastY, 5, 0, 360);
+    ctx.arc(lastX, lastY, Math.ceil(props.lineWidth/2), 0, 360);
     ctx.fill();
   }
 
