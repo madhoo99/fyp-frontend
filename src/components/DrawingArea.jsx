@@ -14,7 +14,7 @@ function DrawingArea(props) {
     const touch = e.touches[0];
     setIsDrawing(true);
     setLastX(touch.clientX);
-    setLastY(touch.clientY);
+    setLastY(touch.clientY-props.startPos);
   }
 
   function handleTouchMove(e) {
@@ -25,10 +25,10 @@ function DrawingArea(props) {
     ctx.beginPath();
     ctx.lineWidth = props.lineWidth;
     ctx.moveTo(lastX, lastY);
-    ctx.lineTo(touch.clientX, touch.clientY);
+    ctx.lineTo(touch.clientX, touch.clientY-props.startPos);
     ctx.stroke();
     setLastX(touch.clientX);
-    setLastY(touch.clientY);
+    setLastY(touch.clientY-props.startPos);
     ctx.beginPath();
     ctx.arc(lastX, lastY, Math.ceil(props.lineWidth/2), 0, 360);
     ctx.fill();
