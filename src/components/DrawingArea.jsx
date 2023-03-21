@@ -14,7 +14,7 @@ function DrawingArea(props) {
     const touch = e.touches[0];
     setIsDrawing(true);
     setLastX(touch.clientX);
-    setLastY(touch.clientY - 140);
+    setLastY(touch.clientY);
   }
 
   function handleTouchMove(e) {
