@@ -89,7 +89,7 @@ function DrawingArea(props) {
   }
 
   return (
-    <div style={{touchAction: 'none'}}>
+    <div style={{touchAction: 'none', top: props.startPos}}>
       <canvas
         ref={canvasRef}
         width={props.width}
