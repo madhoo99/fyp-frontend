@@ -7,6 +7,7 @@ import Prompt from "../components/Prompt";
 import Image from "../components/Image";
 import NormalButton from "../components/NormalButton";
 import InputBar from "../components/InputBar";
+import {useLocation} from 'react-router-dom';
 
 function Draw() {
 
@@ -23,6 +24,8 @@ function Draw() {
     const drawingRelativeSize = 90;
     const endRoute = '/reaction';
     const showText = 'Show';
+
+    const location = useLocation();
 
     function onButtonClick(endRoute) {
         navigate(endRoute);
@@ -47,6 +50,7 @@ function Draw() {
         //const dataUrl = canvas.toDataURL();
         const data = { image: imageSrc, description: descStr };
         console.log(data)
+        console.log(location.state.id)
     
         // Send the data to the server using fetch or an AJAX request
         fetch('http://localhost:8000/save', {

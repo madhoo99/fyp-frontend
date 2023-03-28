@@ -8,7 +8,8 @@ function Home() {
     const navigate = useNavigate();
 
     function onButtonClick(endRoute) {
-        navigate(endRoute);
+        const url = new URL(window.location.href);
+        navigate(endRoute, {state: {id: url.searchParams.get('id')}});
     };
 
     return <div>
