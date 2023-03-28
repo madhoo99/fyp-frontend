@@ -5,3 +5,18 @@
 .normal-button {
     color: 'red'
 }
+
+.timer {
+    position: relative;
+}
+
+.timer-ring {
+    position: absolute;
+}
+
+.timer-time {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    font-size: 100%;
+}
