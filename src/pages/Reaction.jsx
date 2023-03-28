@@ -17,8 +17,10 @@ function Reaction() {
 
     const [time, setTime] = useState(timeGiven);
     const [isFinished, setIsFinished] = useState(false);
+    const [isEmoji, setIsEmoji] = useState(false);
 
     const promptRelativeSize = 8;
+    const endRoute = '/guessDrawing'
 
     useEffect(() => 
     {
@@ -47,19 +49,35 @@ function Reaction() {
     }
 
 
-    function onEmojiButtonClick(endRoute) {
-        navigate(endRoute);
+    function onEmojiButtonClick() {
+        setIsEmoji(true);
     };
 
-    return <div>
-        <EmojiPicker />
-        <Prompt text={'Yay!\nDo you see your drawing on the mirror?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
-        <Prompt text={'React to the other user\'s drawing! Feel free to use gestures, facial expressions, or emojis.'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
-        {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
-        <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
-        <NormalButton text='Choose an emoji' onClickFunc={onEmojiButtonClick} />
-        <TimedButton text='Advance' time={time}/>
-    </div>;
+    function onTimedButtonClick() {
+        if (!isFinished) {
+            return;
+        }
+
+        navigate(endRoute);
+        
+    };
+
+
+    if (isEmoji) {
+        return <div>
+            <EmojiPicker />
+            <TimedButton text='Advance' time={time} onClickFunc={onTimedButtonClick}/>
+        </div>
+    } else {
+        return <div>
+            <Prompt text={'Yay!\nDo you see your drawing on the mirror?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
+            <Prompt text={'React to the other user\'s drawing! Feel free to use gestures, facial expressions, or emojis.'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
+            {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
+            <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
+            <NormalButton text='Choose an emoji' onClickFunc={onEmojiButtonClick} />
+            <TimedButton text='Advance' time={time} onClickFunc={onTimedButtonClick}/>
+        </div>;
+    }
 }
 
 export default Reaction;
