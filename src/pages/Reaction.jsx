@@ -62,10 +62,17 @@ function Reaction() {
         
     };
 
+    function onEmojiClick(emojiData) {
+        console.log(emojiData);
+        const data = { emoji: emojiData.emoji };
+
+        // fetch post to server emoji data
+    }
+
 
     if (isEmoji) {
         return <div>
-            <EmojiPicker />
+            <EmojiPicker onEmojiClick={onEmojiClick}/>
             <TimedButton text='Advance' time={time} onClickFunc={onTimedButtonClick}/>
         </div>
     } else {
