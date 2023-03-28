@@ -2,11 +2,12 @@ import React, { useRef, useState } from 'react';
 import { Navigate, useNavigate } from "react-router-dom";
 
 function DrawingArea(props) {
-  const canvasRef = useRef(null);
+  const canvasRef = props.canvasRef
   const [isDrawing, setIsDrawing] = useState(false);
   const [lastX, setLastX] = useState(0);
   const [lastY, setLastY] = useState(0);
   const navigate = useNavigate();
+
 
 
   function handleTouchStart(e) {
@@ -63,30 +64,33 @@ function DrawingArea(props) {
     setIsDrawing(false);
   }
 
-  function handleSave() {
+  function handleDone() {
+    //const canvas = canvasRef.current;
+    //const dataUrl = canvas.toDataURL();
     const canvas = canvasRef.current;
-    const dataUrl = canvas.toDataURL();
+    const dataUrl = props.getImageURLFunc(canvas, props.setImageSrcFunc)
     const data = { image: dataUrl };
     console.log(data)
 
     // Send the data to the server using fetch or an AJAX request
-    fetch('http://localhost:8000/save', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      //body: 'testing',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  //   fetch('http://localhost:8000/save', {
+  //     method: 'POST',
+  //     body: JSON.stringify(data),
+  //     //body: 'testing',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //     .then(response => {
+  //       console.log(response);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
 
-    navigate(props.endRoute);
-  }
+  //   navigate(props.endRoute);
+  // 
+}
 
   return (
     <div style={{touchAction: 'none', top: props.startPos}}>
@@ -101,7 +105,7 @@ function DrawingArea(props) {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       />
-      <button onClick={handleSave}>Draw</button>
+      <button onClick={handleDone}>Done</button>
     </div>
   );
 }
