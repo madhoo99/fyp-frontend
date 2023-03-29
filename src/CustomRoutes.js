@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom";
 import Reaction from './pages/Reaction';
 import GuessDrawing from './pages/GuessDrawing';
 import Share from './pages/Share';
+import Success from './pages/Success';
 
 function CustomRoutes() {
 return <div>
@@ -22,6 +23,7 @@ return <div>
     <Route exact path="/reaction" element={<Reaction />} />
     <Route exact path="/guessDrawing" element={<GuessDrawing />} />
     <Route exact path="/share" element={<Share />} />
+    <Route exact path="/success" element={<Success />} />
     </Routes>
 </div>
 }
