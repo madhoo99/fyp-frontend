@@ -6,6 +6,7 @@ import Prompt from "../components/Prompt";
 import { useRef, useState, useEffect } from 'react';
 import EmojiPicker from "emoji-picker-react";
 import TimedButton from "../components/TimedButton";
+import getHeight from "../utils/functions";
 
 function Reaction() {
 
@@ -39,14 +40,6 @@ function Reaction() {
 
         return () => clearInterval(timerInterval);
     }, [time, isFinished]);
-      
-
-    function getHeight(order, relativeSize){
-        if (order == 1) {
-            return Math.ceil(relativeSize*windowSize.current[1]/100);
-        }
-        return Math.floor(relativeSize*windowSize.current[1]/100);
-    }
 
 
     function onEmojiButtonClick() {

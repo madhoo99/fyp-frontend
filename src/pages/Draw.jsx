@@ -8,6 +8,7 @@ import Image from "../components/Image";
 import NormalButton from "../components/NormalButton";
 import InputBar from "../components/InputBar";
 import {useLocation} from 'react-router-dom';
+import getHeight from '../utils/functions';
 
 function Draw() {
 
@@ -30,13 +31,6 @@ function Draw() {
     function onButtonClick(endRoute) {
         navigate(endRoute);
     };
-
-    function getHeight(order, relativeSize){
-        if (order == 1) {
-            return Math.ceil(relativeSize*windowSize.current[1]/100);
-        }
-        return Math.floor(relativeSize*windowSize.current[1]/100);
-    }
 
     function getImageURL(canvas, setImageSrc) {
         const dataUrl = canvas.toDataURL();
