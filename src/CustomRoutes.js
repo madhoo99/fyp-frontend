@@ -9,6 +9,7 @@ import Reaction from './pages/Reaction';
 import GuessDrawing from './pages/GuessDrawing';
 import Share from './pages/Share';
 import Success from './pages/Success';
+import End from './pages/End';
 
 function CustomRoutes() {
 return <div>
@@ -24,6 +25,7 @@ return <div>
     <Route exact path="/guessDrawing" element={<GuessDrawing />} />
     <Route exact path="/share" element={<Share />} />
     <Route exact path="/success" element={<Success />} />
+    <Route exact path="/end" element={<End />} />
     </Routes>
 </div>
 }
