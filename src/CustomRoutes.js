@@ -10,11 +10,15 @@ import GuessDrawing from './pages/GuessDrawing';
 import Share from './pages/Share';
 import Success from './pages/Success';
 import End from './pages/End';
+import DrawingPrompt from './pages/DrawingPrompt';
+import Name from './pages/Name';
 
 function CustomRoutes() {
 return <div>
     <Routes>
     <Route exact path="/home" element={<Home />} />
+    <Route exact path="/name" element={<Name />} />
+    <Route exact path="/drawingPrompt" element={<DrawingPrompt />} />
     <Route exact path="/draw" element={<Draw />} />
     {/* <Route exact path="/">
         <Navigate to="/Home" replace={true} />
