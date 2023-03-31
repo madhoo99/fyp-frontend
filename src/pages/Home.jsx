@@ -4,6 +4,7 @@ import DrawingArea from "../components/DrawingArea";
 import NormalButton from "../components/NormalButton";
 import Prompt from "../components/Prompt";
 import getHeight from "../utils/functions";
+import BACKEND_LINK from "../links";
 
 function Home() {
 
@@ -15,7 +16,16 @@ function Home() {
 
     function onButtonClick() {
         const url = new URL(window.location.href);
-        navigate(endRoute, {state: {id: url.searchParams.get('id')}});
+        fetch(BACKEND_LINK + '/start' + '?id=' + String(url.searchParams.get('id')), {
+          method: 'GET',
+        })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+        navigate(endRoute);
     };
 
     return <div>
