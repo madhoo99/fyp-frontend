@@ -1,4 +1,5 @@
 import getHeight from "../utils/functions";
+import Prompt from "./Prompt";
 
 function InProgressScreen(props) {
 

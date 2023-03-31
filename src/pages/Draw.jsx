@@ -50,6 +50,7 @@ function Draw() {
         fetch('http://localhost:8000/save', {
           method: 'POST',
           body: JSON.stringify(data),
+          credentials: 'include',
           //body: 'testing',
           headers: {
             'Content-Type': 'application/json'

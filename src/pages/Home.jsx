@@ -18,6 +18,7 @@ function Home() {
         const url = new URL(window.location.href);
         fetch(BACKEND_LINK + '/start' + '?id=' + String(url.searchParams.get('id')), {
           method: 'GET',
+          credentials: 'include'
         })
           .then(response => {
             console.log(response);
