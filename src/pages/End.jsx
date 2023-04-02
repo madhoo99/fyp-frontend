@@ -3,28 +3,63 @@ import { Navigate, useNavigate } from "react-router-dom";
 import DrawingArea from "../components/DrawingArea";
 import NormalButton from "../components/NormalButton";
 import Prompt from "../components/Prompt";
-import { getHeight } from "../utils/functions";
-import { useState } from "react";
+import { changeAuthRender, getHeight } from "../utils/functions";
+import { useEffect, useState } from "react";
+import InProgressScreen from "../components/InProgessScreen";
+import BACKEND_LINK from "../links";
 
 function End() {
 
     const navigate = useNavigate();
+
+    const [isFinishedWaiting, setIsFinishedWaiting] = useState(false);
 
     const [desc, setDesc] = useState('');
 
     const relativeSize = 8;
     const height = getHeight(1, relativeSize);
     const endRoute='/home';
+
+    useEffect(() => 
+    {
+        const drawTimerInterval = setInterval(() => 
+        {
+            if (isFinishedWaiting) {
+                return;
+            }
+            fetch(BACKEND_LINK + '/auth', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(response => {
+                changeAuthRender(response, setIsFinishedWaiting);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+        , 1000);
+
+        return () => clearInterval(drawTimerInterval);
+    }, [isFinishedWaiting]);
     
     function onEndClick() {
         const url = new URL(window.location.href);
+        // post request to reset game
         navigate(endRoute, {state: {id: url.searchParams.get('id')}});
     };
 
-    return <div>
-        <Prompt text='Thank you for playing! ' relativeSize={relativeSize} height={height}/>
-        <NormalButton text='End' onClickFunc={onEndClick}/>
-    </div>;
+    if (isFinishedWaiting) {
+
+        return <div>
+            <Prompt text='Thank you for playing! ' relativeSize={relativeSize} height={height}/>
+            <NormalButton text='End' onClickFunc={onEndClick}/>
+        </div>;
+
+    } else {
+        return <InProgressScreen />;
+    }
 }
 
 export default End;
