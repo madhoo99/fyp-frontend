@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import DrawingArea from "../components/DrawingArea";
 import NormalButton from "../components/NormalButton";
 import Prompt from "../components/Prompt";
-import getHeight from "../utils/functions";
+import { getHeight, changeAuthRender } from "../utils/functions";
 import { useEffect, useState } from "react";
 import InputBar from "../components/InputBar";
 import WaitingScreen from "../components/WaitingScreen";
@@ -16,7 +16,6 @@ function Name() {
 
     const [nickname, setNickname] = useState('');
     const [isFinishedWaiting, setIsFinishedWaiting] = useState(false);
-    const [waitingOrNoAccess, setWaitingOrNoAccess] = useState(false); // false indiciates no access, true indicates waiting
 
     const relativeSize = 8;
     const height = getHeight(1, relativeSize);
@@ -33,19 +32,9 @@ function Name() {
                 method: 'GET',
                 credentials: 'include'
             })
+            .then(response => response.json())
             .then(response => {
-                console.log(response);
-                // if no issues
-                if (response.status === 200) {
-                    setIsFinishedWaiting(true);
-                    return;
-                }
-                // waiting for other player
-                if (response['error']['E005']) {
-                    setWaitingOrNoAccess(true);
-                    return;
-                }
-                setWaitingOrNoAccess(false);
+                changeAuthRender(response, setIsFinishedWaiting);
             })
             .catch(error => {
                 console.error(error);
@@ -54,7 +43,7 @@ function Name() {
         , 1000);
 
         return () => clearInterval(nameTimerInterval);
-    }, [isFinishedWaiting, waitingOrNoAccess]);
+    }, [isFinishedWaiting]);
 
     function onEnterClick() {
         const data = {nickname: nickname};
@@ -86,10 +75,6 @@ function Name() {
             <InputBar setterFunc={setNickname} placeholder='subbu snacks' value={nickname}/>
             <NormalButton text='Enter' onClickFunc={onEnterClick} />
         </div>;
-
-    } else if (waitingOrNoAccess){
-
-        return <WaitingScreen />;
 
     } else {
         

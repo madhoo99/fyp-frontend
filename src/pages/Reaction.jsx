@@ -6,7 +6,7 @@ import Prompt from "../components/Prompt";
 import { useRef, useState, useEffect } from 'react';
 import EmojiPicker from "emoji-picker-react";
 import TimedButton from "../components/TimedButton";
-import getHeight from "../utils/functions";
+import { getHeight } from "../utils/functions";
 
 function Reaction() {
 

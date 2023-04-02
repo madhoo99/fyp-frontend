@@ -7,4 +7,29 @@ function getHeight(order, relativeSize){
 };
 
 
-export default getHeight;
+function changeAuthRender(response, setIsFinishedWaiting){
+    console.log(response);
+    // if no issues
+    if (!response.message) {
+        return;
+    }
+    setIsFinishedWaiting(true);
+}
+
+function changeAuthStateRender(response, setIsFinishedWaiting, setWaiting) {
+    if (response.message) {
+        console.log('render');
+        setIsFinishedWaiting(true);
+        return;
+    }
+    // waiting for other player
+    if (response.error.code === 'E005') {
+        console.log('waiting');
+        setWaiting(true);
+        return;
+    }
+    console.log('unauthorized');
+    setWaiting(false);
+}
+
+export {getHeight, changeAuthRender, changeAuthStateRender};

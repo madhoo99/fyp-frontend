@@ -5,7 +5,7 @@ import NormalButton from "../components/NormalButton";
 import { useState } from "react";
 import InputBar from "../components/InputBar";
 import Prompt from "../components/Prompt";
-import getHeight from "../utils/functions";
+import { getHeight } from "../utils/functions";
 
 function Share() {
 

@@ -8,7 +8,7 @@ import Image from "../components/Image";
 import NormalButton from "../components/NormalButton";
 import InputBar from "../components/InputBar";
 import {useLocation} from 'react-router-dom';
-import getHeight from '../utils/functions';
+import { getHeight } from '../utils/functions';
 
 function Draw() {
 

@@ -7,6 +7,7 @@ import NoAccessScreen from "../components/NoAccessScreen";
 import { useEffect, useState } from "react";
 import BACKEND_LINK from "../links";
 import InProgressScreen from "../components/InProgessScreen";
+import { changeAuthStateRender } from "../utils/functions";
 
 function DrawingPrompt() {
 
@@ -29,19 +30,7 @@ function DrawingPrompt() {
             .then(response => response.json())
             .then(response => {
                 // if no issues
-                if (response.message) {
-                    console.log('render');
-                    setIsFinishedWaiting(true);
-                    return;
-                }
-                // waiting for other player
-                if (response.error.code === 'E005') {
-                    console.log('waiting');
-                    setWaiting(true);
-                    return;
-                }
-                console.log('unauthorized');
-                setWaiting(false);
+                changeAuthStateRender(response, setIsFinishedWaiting, setWaiting);
             })
             .catch(error => {
                 console.error(error);

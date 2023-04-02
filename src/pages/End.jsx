@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import DrawingArea from "../components/DrawingArea";
 import NormalButton from "../components/NormalButton";
 import Prompt from "../components/Prompt";
-import getHeight from "../utils/functions";
+import { getHeight } from "../utils/functions";
 import { useState } from "react";
 
 function End() {

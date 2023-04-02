@@ -1,4 +1,4 @@
-import getHeight from "../utils/functions";
+import { getHeight } from "../utils/functions";
 import Prompt from "./Prompt";
 
 function NoAccessScreen(props) {
