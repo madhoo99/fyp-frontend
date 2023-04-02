@@ -72,10 +72,9 @@ function Draw() {
         //const dataUrl = canvas.toDataURL();
         const data = { image: imageSrc, description: descStr };
         console.log(data)
-        console.log(location.state.id)
     
         // Send the data to the server using fetch or an AJAX request
-        fetch('http://localhost:8000/save', {
+        fetch(BACKEND_LINK + '/saveDrawing', {
           method: 'POST',
           body: JSON.stringify(data),
           credentials: 'include',
@@ -84,12 +83,12 @@ function Draw() {
             'Content-Type': 'application/json'
           }
         })
-          .then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.error(error);
-          });
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     
         navigate(endRoute);
     }
