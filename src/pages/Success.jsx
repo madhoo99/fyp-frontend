@@ -50,7 +50,24 @@ function Success() {
     }
 
     function onFinishClick() {
+        const data = {rating: rating};
         // post feedback to server
+        fetch(BACKEND_LINK + '/rating', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            credentials: 'include',
+            //body: 'testing',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+        console.log(response);
+        })
+        .catch(error => {
+        console.error(error);
+        });
+
         const url = new URL(window.location.href);
         console.log(rating);
         navigate(endRoute, {state: {id: url.searchParams.get('id')}});

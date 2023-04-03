@@ -51,6 +51,25 @@ function Share() {
     
     function onShareClick() {
         // send request for video wall
+        const data = { name: name, age: age, region: region };
+        console.log(data);
+    
+        // Send the data to the server using fetch or an AJAX request
+        fetch(BACKEND_LINK + '/share', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          credentials: 'include',
+          //body: 'testing',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.error(error);
+        });
         leavePage(shareEndRoute);
     };
 

@@ -15,6 +15,7 @@ function GuessDrawing() {
     const [isFinishedWaiting, setIsFinishedWaiting] = useState(false);
 
     const [desc, setDesc] = useState('');
+    const [descIsObtained, setDescIsObtained] = useState(false);
 
     const relativeSize = 8;
     const height = getHeight(1, relativeSize);
@@ -44,7 +45,31 @@ function GuessDrawing() {
         return () => clearInterval(drawTimerInterval);
     }, [isFinishedWaiting]);
 
-    
+    useEffect(() => 
+    {
+        const getDescriptionInterval = setInterval(() => 
+        {
+            if (descIsObtained) {
+                return;
+            }
+            fetch(BACKEND_LINK + '/guessDrawing', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(response => {
+                setDesc(response.message);
+                setDescIsObtained(true);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+        , 1000);
+
+        return () => clearInterval(getDescriptionInterval);
+    }, [descIsObtained]);
+
     function onButtonClick() {
         const url = new URL(window.location.href);
         navigate(endRoute, {state: {id: url.searchParams.get('id')}});

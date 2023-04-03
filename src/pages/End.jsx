@@ -47,6 +47,20 @@ function End() {
     function onEndClick() {
         const url = new URL(window.location.href);
         // post request to reset game
+        fetch(BACKEND_LINK + '/end', {
+            method: 'POST',
+            credentials: 'include',
+            //body: 'testing',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+        console.log(response);
+        })
+        .catch(error => {
+        console.error(error);
+        });
         navigate(endRoute, {state: {id: url.searchParams.get('id')}});
     };
 
