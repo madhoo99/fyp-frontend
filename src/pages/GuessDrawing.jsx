@@ -58,7 +58,7 @@ function GuessDrawing() {
             })
             .then(response => response.json())
             .then(response => {
-                setDesc(response.message);
+                setDesc(response.description);
                 setDescIsObtained(true);
             })
             .catch(error => {
