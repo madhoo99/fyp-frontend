@@ -96,7 +96,7 @@ function Draw() {
     }
 
     if (isFinishedWaiting) {
-        if (isFinishedWaiting) {
+        if (isDescription) {
             return <div>
                 <Prompt fonttest="font-link-Heading" text={'Wow! Are you an artist?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='20vh'/>
                 <Image src={imageSrc} alt='light-png.png' height={400} width={400}/>
