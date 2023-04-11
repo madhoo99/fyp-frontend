@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import BACKEND_LINK from "../links";
 import InProgressScreen from "../components/InProgessScreen";
 import { changeAuthStateRender } from "../utils/functions";
+import Prompt from "../components/Prompt";
+import { getHeight, changeAuthRender } from "../utils/functions";
 
 function DrawingPrompt() {
 
@@ -16,6 +18,9 @@ function DrawingPrompt() {
     const [isFinishedWaiting, setIsFinishedWaiting] = useState(false);
     const [waiting, setWaiting] = useState(false); // false indiciates no access, true indicates waiting
     const state = 3;
+
+    const relativeSize = 4;
+    const height = getHeight(1, relativeSize);
 
     useEffect(() => 
     {
@@ -48,17 +53,21 @@ function DrawingPrompt() {
     };
 
     if (isFinishedWaiting) {
-
         return <div>
-            <h1>Draw something that reminds you of your childhood</h1>
+            <div style={{
+          width: '200px',
+          height: '100px'
+        }}></div>
+
+            <Prompt fonttest="font-link-Heading" text='Draw something that reminds you of your childhood' relativeSize={relativeSize} height={height} width='95vw'/>
             {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
             <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
-            <NormalButton text='Draw' onClickFunc={onButtonClick} endRoute='/draw' />
+            <NormalButton fonttest="font-link" className='btn btn-warning' text='Draw' onClickFunc={onButtonClick} endRoute='/draw' width='20vw' height='5vh' left='40vw' top='35vh' />
         </div>;
 
     } else {
 
-        if (waiting) {
+        if (true) {
             return <WaitingScreen />;
         } else {
             return <InProgressScreen />;
