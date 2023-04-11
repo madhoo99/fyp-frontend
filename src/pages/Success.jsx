@@ -21,6 +21,8 @@ function Success() {
     const height = getHeight(1, relativeSize);
     const endRoute='/end';
 
+    const state = 8;
+
     useEffect(() => 
     {
         const drawTimerInterval = setInterval(() => 
@@ -28,7 +30,7 @@ function Success() {
             if (isFinishedWaiting) {
                 return;
             }
-            fetch(BACKEND_LINK + '/auth', {
+            fetch(BACKEND_LINK + '/auth' + '?state=' + String(state), {
                 method: 'GET',
                 credentials: 'include'
             })

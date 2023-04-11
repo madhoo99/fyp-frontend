@@ -15,6 +15,7 @@ function DrawingPrompt() {
 
     const [isFinishedWaiting, setIsFinishedWaiting] = useState(false);
     const [waiting, setWaiting] = useState(false); // false indiciates no access, true indicates waiting
+    const state = 3;
 
     useEffect(() => 
     {
@@ -23,7 +24,7 @@ function DrawingPrompt() {
             if (isFinishedWaiting) {
                 return;
             }
-            fetch(BACKEND_LINK + '/authState', {
+            fetch(BACKEND_LINK + '/authState' + '?state=' + String(state), {
                 method: 'GET',
                 credentials: 'include'
             })

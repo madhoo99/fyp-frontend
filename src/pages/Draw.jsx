@@ -30,6 +30,8 @@ function Draw() {
     const endRoute = '/reaction';
     const showText = 'Show';
 
+    const state = 4;
+
     const location = useLocation();
 
     useEffect(() => 
@@ -39,7 +41,7 @@ function Draw() {
             if (isFinishedWaiting) {
                 return;
             }
-            fetch(BACKEND_LINK + '/auth', {
+            fetch(BACKEND_LINK + '/auth' + '?state=' + String(state), {
                 method: 'GET',
                 credentials: 'include'
             })

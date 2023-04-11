@@ -24,6 +24,8 @@ function Share() {
     const shareEndRoute='/success';
     const skipEndRoute='/end';
 
+    const state = 7;
+
     useEffect(() => 
     {
         const drawTimerInterval = setInterval(() => 
@@ -31,7 +33,7 @@ function Share() {
             if (isFinishedWaiting) {
                 return;
             }
-            fetch(BACKEND_LINK + '/auth', {
+            fetch(BACKEND_LINK + '/auth' + '?state=' + String(state), {
                 method: 'GET',
                 credentials: 'include'
             })

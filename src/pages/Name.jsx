@@ -20,6 +20,7 @@ function Name() {
     const relativeSize = 8;
     const height = getHeight(1, relativeSize);
     const endRoute = '/drawingPrompt';
+    const state = 2;
 
     useEffect(() => 
     {
@@ -28,7 +29,7 @@ function Name() {
             if (isFinishedWaiting) {
                 return;
             }
-            fetch(BACKEND_LINK + '/auth', {
+            fetch(BACKEND_LINK + '/auth' + '?state=' + String(state), {
                 method: 'GET',
                 credentials: 'include'
             })

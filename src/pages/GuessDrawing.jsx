@@ -21,6 +21,8 @@ function GuessDrawing() {
     const height = getHeight(1, relativeSize);
     const endRoute='/share';
 
+    const state = 6;
+
     useEffect(() => 
     {
         const drawTimerInterval = setInterval(() => 
@@ -28,7 +30,7 @@ function GuessDrawing() {
             if (isFinishedWaiting) {
                 return;
             }
-            fetch(BACKEND_LINK + '/auth', {
+            fetch(BACKEND_LINK + '/auth' + '?state=' + String(state), {
                 method: 'GET',
                 credentials: 'include'
             })

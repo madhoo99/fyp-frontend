@@ -29,6 +29,8 @@ function Reaction() {
     const promptRelativeSize = 8;
     const endRoute = '/guessDrawing'
 
+    const state = 5;
+
     useEffect(() => 
     {
         const reactionTimerInterval = setInterval(() => 
@@ -36,7 +38,7 @@ function Reaction() {
             if (isFinishedWaiting) {
                 return;
             }
-            fetch(BACKEND_LINK + '/authState', {
+            fetch(BACKEND_LINK + '/authState' + '?state=' + String(state), {
                 method: 'GET',
                 credentials: 'include'
             })
