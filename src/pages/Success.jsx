@@ -17,7 +17,7 @@ function Success() {
 
     const [rating, setRating] = useState(2.5);
 
-    const relativeSize = 8;
+    const relativeSize = 10;
     const height = getHeight(1, relativeSize);
     const endRoute='/end';
 
@@ -74,13 +74,13 @@ function Success() {
     };
 
     if (isFinishedWaiting) {
-
+    
         return <div>
-            <Prompt text='Success! ' relativeSize={relativeSize} height={height}/>
-            <Prompt text='Try looking for your masterpiece on the archive wall! ' relativeSize={relativeSize} height={height}/>
-            <Prompt text='Rate this experience' relativeSize={relativeSize} height={height}/>
-            <Rating name="rating" onChange={(event, newValue) => {onRatingChange(newValue);}} defaultValue={rating}/>
-            <NormalButton text='Finish' onClickFunc={onFinishClick}/>
+            <Prompt fonttest="font-link" text='Success! ' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='15vh'/>
+            <Prompt fonttest="font-link" text='Try looking for your masterpiece on the archive wall! ' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='25vh'/>
+            <Prompt fonttest="font-link" text='Rate this experience' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='35vh'/>
+            <Rating name="rating" onChange={(event, newValue) => {onRatingChange(newValue);}} defaultValue={rating} width='20vw' left='40vw' top='45vh'/>
+            <NormalButton fonttest="font-link" className='btn btn-warning' text='Finish' onClickFunc={onFinishClick} width='20vw' left='40vw' top='45vh'/>
         </div>;
 
     } else {

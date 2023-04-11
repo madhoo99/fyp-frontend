@@ -76,12 +76,12 @@ function GuessDrawing() {
     };
 
     if (isFinishedWaiting) {
-
+    
         return <div>
-            <Prompt text='The other person drew: ' relativeSize={relativeSize} height={height}/>
-            <Prompt text={desc} relativeSize={relativeSize} height={height}/>
-            <Prompt text='Did you figure out what the other person was drawing?' relativeSize={relativeSize} height={height}/>
-            <NormalButton text='Advance' onClickFunc={onButtonClick}/>
+            <Prompt fonttest="font-link" text='The other person drew: ' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='10vh'/>
+            <Prompt fonttest="font-link" text={desc} relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='20vh'/>
+            <Prompt fonttest="font-link" text='Did you figure out what the other person was drawing?' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='60vh'/>
+            <NormalButton fonttest="font-link" className='btn btn-warning' text='Advance' onClickFunc={onButtonClick} width='20vw' left='40vw' top='70vh'/>
         </div>;
 
     } else {

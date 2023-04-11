@@ -26,7 +26,9 @@ function Reaction() {
     const [isFinishedTimeOut, setIsFinishedTimeOut] = useState(false);
     const [isEmoji, setIsEmoji] = useState(false);
 
-    const promptRelativeSize = 8;
+    const [timedButtonColor, setTimedButtonColor] = useState('gray')
+
+    const promptRelativeSize = 4;
     const endRoute = '/guessDrawing'
 
     useEffect(() => 
@@ -65,6 +67,7 @@ function Reaction() {
             console.log(time)
             if (time == 0) {
                 setIsFinishedTimeOut(true);
+                setTimedButtonColor('pink');
             }
         }
         , 1000);
@@ -109,20 +112,19 @@ function Reaction() {
     }
 
     if (isFinishedWaiting) {
-
-        if (isEmoji) {
+        if (isEmoji){
             return <div>
-                <EmojiPicker onEmojiClick={onEmojiClick}/>
-                <TimedButton text='Advance' time={time} onClickFunc={onTimedButtonClick}/>
+                <EmojiPicker onEmojiClick={onEmojiClick} left='35vw' top='70vh'/>
+                <TimedButton radius='5px' fonttest="font-link" leftInnerText='0vw' topInnerText='2.5vh' text='Advance' time={time} onClickFunc={onTimedButtonClick} height= '8vh' width= '30vw' left='35vw' top='70vh' color={timedButtonColor}/>
             </div>
         } else {
             return <div>
-                <Prompt text={'Yay!\nDo you see your drawing on the mirror?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
-                <Prompt text={'React to the other user\'s drawing! Feel free to use gestures, facial expressions, or emojis.'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
+                <Prompt fonttest="font-link-Heading" text={'Yay!\nDo you see your drawing on the mirror?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='10vh'/>
+                <Prompt fonttest="font-link-Heading" text={'React to the other user\'s drawing! Feel free to use gestures, facial expressions, or emojis.'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='30vh'/>
                 {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
                 <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
-                <NormalButton text='Choose an emoji' onClickFunc={onEmojiButtonClick} />
-                <TimedButton text='Advance' time={time} onClickFunc={onTimedButtonClick}/>
+                <NormalButton fonttest="font-link" className='btn btn-warning' text='Choose an emoji' onClickFunc={onEmojiButtonClick} width='15vw' left='43vw' top='55vh' />
+                <TimedButton radius='5px' fonttest="font-link" leftInnerText='0vw' topInnerText='2.5vh' text='Advance' time={time} onClickFunc={onTimedButtonClick} height= '8vh' width= '30vw' left='35vw' top='70vh' color={timedButtonColor}/>
             </div>;
         }
 

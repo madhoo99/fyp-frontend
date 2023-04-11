@@ -24,17 +24,17 @@ function Draw() {
     const [isDescription, setIsDescription] = useState(false);
     const [imageSrc, setImageSrc] = useState(null)
     const [descStr, setDescStr] = useState('')
-    const promptRelativeSize = 8;
+    const promptRelativeSize = 6;
     const smallPromptRelativeSize = 4;
-    const drawingRelativeSize = 90;
+    const drawingRelativeSize = 60;
     const endRoute = '/reaction';
     const showText = 'Show';
 
     const location = useLocation();
 
-    useEffect(() => 
+    useEffect(() =>
     {
-        const drawTimerInterval = setInterval(() => 
+        const drawTimerInterval = setInterval(() =>
         {
             if (isFinishedWaiting) {
                 return;
@@ -72,7 +72,7 @@ function Draw() {
         //const dataUrl = canvas.toDataURL();
         const data = { image: imageSrc, description: descStr };
         console.log(data)
-    
+
         // Send the data to the server using fetch or an AJAX request
         fetch(BACKEND_LINK + '/saveDrawing', {
           method: 'POST',
@@ -89,29 +89,28 @@ function Draw() {
         .catch(error => {
           console.error(error);
         });
-    
+
         navigate(endRoute);
     }
 
     if (isFinishedWaiting) {
+        if (isFinishedWaiting) {
+            return <div>
+                <Prompt fonttest="font-link-Heading" text={'Wow! Are you an artist?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='20vh'/>
+                <Image src={imageSrc} alt='light-png.png' height={400} width={400}/>
+                <Prompt text={'Enter a description for your artwork'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='35vh'/>
+                <InputBar setterFunc={setDescStr} placeholder="Enter Description" value={descStr} width='70vw' height='20vh' left='15vw' top='50vh'/>
+                <NormalButton fonttest="font-link" className='btn btn-warning' text={showText} onClickFunc={handleSave} width='30vw' left='35vw' top='73vh'/>
+            </div>
 
-      if (isDescription) {
-          return <div>
-              <Prompt text={'Wow! Are you an artist?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
-              <Image src={imageSrc} alt='light-png.png' height={400} width={400}/>
-              <Prompt text={'Enter a description for your artwork'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)}/>
-              <InputBar setterFunc={setDescStr} placeholder="Enter Description" value={descStr} />
-              <NormalButton text={showText} onClickFunc={handleSave} />
-          </div>
-      } else {
-      
-          return <div>
-              <SmallPrompt text={'Draw something that reminds you of your childhood.'} relativeSize={smallPromptRelativeSize} height={getHeight(1, smallPromptRelativeSize)}/>
-              {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
-              <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
-              <DrawingArea setImageSrcFunc={setImageSrc} getImageURLFunc={getImageURL} height={getHeight(2, drawingRelativeSize)} width={windowSize.current[0]} lineWidth={10} startPos={getHeight(1, smallPromptRelativeSize) + 1} canvasRef={canvasRef}/>
-          </div>;
-      }
+        } else {
+            return <div>
+                <Prompt fonttest="font-link-Heading" text={'Draw something that reminds you of your childhood'} relativeSize={smallPromptRelativeSize} height={getHeight(1, smallPromptRelativeSize)} width='80vw' left='10vw' top='68vh'/>
+                {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
+                <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
+                <DrawingArea setImageSrcFunc={setImageSrc} getImageURLFunc={getImageURL} height={getHeight(2, drawingRelativeSize)} width={windowSize.current[0]} lineWidth={10} startPos={getHeight(1, smallPromptRelativeSize) + 1} canvasRef={canvasRef}/>
+            </div>;
+        }
 
   } else {
 

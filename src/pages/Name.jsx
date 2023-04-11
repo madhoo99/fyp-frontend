@@ -69,11 +69,17 @@ function Name() {
     if (isFinishedWaiting){
 
         return <div>
-            <Prompt text='Enter your nickname' relativeSize={relativeSize} height={height}/>
+
+        <div style={{
+          width: '200px',
+          height: '100px'
+        }}></div>
+        
+            <Prompt fonttest="font-link-Heading" text='Enter your nickname' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='15vh'/>
             {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
             <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
-            <InputBar setterFunc={setNickname} placeholder='subbu snacks' value={nickname}/>
-            <NormalButton text='Enter' onClickFunc={onEnterClick} />
+            <InputBar  fonttest="font-link" setterFunc={setNickname} placeholder='Nickname' value={nickname}  width='25vw' height='5vh' left='38vw' top='40vh'/>
+            <NormalButton  fonttest="font-link" className='btn btn-warning' text='Enter' onClickFunc={onEnterClick}  width='20vw' height='5vh' left='40vw' top='50vh'/>
         </div>;
 
     } else {

@@ -82,14 +82,14 @@ function Share() {
     }
 
     if (isFinishedWaiting) {
-
+        
         return <div>
-            <Prompt text='Share your masterpiece with the world! ' relativeSize={relativeSize} height={height}/>
-            <InputBar setterFunc={setName} placeholder='Optionally enter your name...' value={name}/>
-            <InputBar setterFunc={setAge} placeholder='Age...' value={age}/>
-            <InputBar setterFunc={setRegion} placeholder='And where you are from' value={region}/>
-            <NormalButton text='Share' onClickFunc={onShareClick}/>
-            <NormalButton text='Skip' onClickFunc={onSkipClick}/>
+            <Prompt fonttest="font-link" text='Share your masterpiece with the world! ' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='15vh'/>
+            <InputBar setterFunc={setName} placeholder='Optionally enter your name...' value={name} width='80vw' left='10vw' top='25vh'/>
+            <InputBar setterFunc={setAge} placeholder='Age...' value={age} width='80vw' left='10vw' top='35vh'/>
+            <InputBar setterFunc={setRegion} placeholder='And where you are from' value={region} width='80vw' left='10vw' top='45vh'/>
+            <NormalButton fonttest="font-link" className='btn btn-warning' text='Share' onClickFunc={onShareClick} width='15vw' left='30vw' top='60vh'/>
+            <NormalButton fonttest="font-link" className='btn btn-warning' text='Skip' onClickFunc={onSkipClick} width='15vw' left='50vw' top='60vh'/>
         </div>;
 
     } else {

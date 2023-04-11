@@ -64,11 +64,11 @@ function End() {
         navigate(endRoute, {state: {id: url.searchParams.get('id')}});
     };
 
-    if (isFinishedWaiting) {
+    if (true) {
 
         return <div>
-            <Prompt text='Thank you for playing! ' relativeSize={relativeSize} height={height}/>
-            <NormalButton text='End' onClickFunc={onEndClick}/>
+            <Prompt fonttest="font-link" text='Thank you for playing! ' relativeSize={relativeSize} height={height} width='80vw' left='10vw' top='15vh'/>
+            <NormalButton fonttest="font-link" className='btn btn-warning' text='End' onClickFunc={onEndClick}  width='20vw' left='40vw' top='45vh'/>
         </div>;
 
     } else {

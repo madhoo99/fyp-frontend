@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Navigate, useNavigate } from "react-router-dom";
+import NormalButton from "../components/NormalButton";
 
 function DrawingArea(props) {
   const canvasRef = props.canvasRef
@@ -95,6 +96,7 @@ function DrawingArea(props) {
   return (
     <div style={{touchAction: 'none', top: props.startPos}}>
       <canvas
+        style={{backgroundColor: 'white'}}
         ref={canvasRef}
         width={props.width}
         height={props.height}
@@ -105,7 +107,8 @@ function DrawingArea(props) {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       />
-      <button onClick={handleDone}>Done</button>
+      {/* <button onClick={handleDone}>Done</button> */}
+      <NormalButton  fonttest="font-link" className='btn btn-warning' text='Done' onClick={handleDone} width='20vw' height='5vh' left='40vw' top='85vh'/>
     </div>
   );
 }

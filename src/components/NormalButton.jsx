@@ -1,16 +1,18 @@
 import '../static/style.css'
 
 function NormalButton(props) {
-    return <button className='normal-button' onClick={() => 
+
+    return <button type="button" className={props.className} style={{position:'absolute', width: props.width, height: props.height, left: props.left, top: props.top}} onClick={() => 
         {
             if (props.endRoute) {
                 props.onClickFunc(props.endRoute);
             } else {
                 props.onClickFunc();
             }
-        }
+        }   
     }>
-        <p>{props.text}</p>
+        <p className={props.fonttest}>{props.text}</p>
+
     </button>
 }
 

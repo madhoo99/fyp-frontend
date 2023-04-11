@@ -1,9 +1,12 @@
 .select-button {
-    color: 'red'
+    color: red;
 }
 
 .normal-button {
-    color: 'red'
+    color: black;
+    position: fixed;
+    left: 50%;
+    top: 50%;
 }
 
 .timer {
@@ -19,4 +22,24 @@
     top: 20%;
     left: 40%;
     font-size: 100%;
+}
+
+.prompt {
+    color: orangered;
+
+}
+
+.font-link {
+    font-family:"Press Start 2P", normal;
+    font-size: 2vmin;
+  }
+
+.font-link-Heading {
+    font-family:"Press Start 2P", normal;
+}
+
+  
+body { 
+    position: relative;
+    background-image: url(../../public/background.jpg);
 }
