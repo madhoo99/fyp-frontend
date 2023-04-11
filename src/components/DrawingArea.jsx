@@ -108,7 +108,7 @@ function DrawingArea(props) {
         onMouseUp={handleMouseUp}
       />
       {/* <button onClick={handleDone}>Done</button> */}
-      <NormalButton  fonttest="font-link" className='btn btn-warning' text='Done' onClick={handleDone} width='20vw' height='5vh' left='40vw' top='85vh'/>
+      <NormalButton  fonttest="font-link" className='btn btn-warning' text='Done' onClickFunc={handleDone} width='20vw' height='5vh' left='40vw' top='85vh'/>
     </div>
   );
 }
