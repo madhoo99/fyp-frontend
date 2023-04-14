@@ -6,7 +6,7 @@ import Prompt from "../components/Prompt";
 import { useRef, useState, useEffect } from 'react';
 import EmojiPicker from "emoji-picker-react";
 import TimedButton from "../components/TimedButton";
-import { changeAuthStateRender, getHeight } from "../utils/functions";
+import { changeAuthStateRender, changeAuthStateRenderReaction, getHeight } from "../utils/functions";
 import WaitingScreen from "../components/WaitingScreen";
 import InProgressScreen from "../components/InProgessScreen";
 import BACKEND_LINK from "../links";
@@ -19,6 +19,7 @@ function Reaction() {
 
     const [isFinishedWaiting, setIsFinishedWaiting] = useState(false);
     const [waiting, setWaiting] = useState(false); // false indiciates no access, true indicates waiting
+    const [isTimerStart, setIsTimerStart] = useState(false);
 
     const timeGiven = 30;
 
@@ -47,7 +48,7 @@ function Reaction() {
             .then(response => response.json())
             .then(response => {
                 // if no issues
-                changeAuthStateRender(response, setIsFinishedWaiting, setWaiting);
+                changeAuthStateRenderReaction(response, setIsFinishedWaiting, setWaiting, setIsTimerStart);
             })
             .catch(error => {
                 console.error(error);
@@ -65,6 +66,9 @@ function Reaction() {
             if (isFinishedTimeOut) {
                 return;
             }
+            if (!isTimerStart) {
+                return;
+            }
             setTime(time => time - 1);
             console.log(time)
             if (time == 0) {
@@ -75,7 +79,7 @@ function Reaction() {
         , 1000);
 
         return () => clearInterval(timerInterval);
-    }, [time, isFinishedTimeOut]);
+    }, [time, isFinishedTimeOut, isTimerStart]);
 
 
     function onEmojiButtonClick() {

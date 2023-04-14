@@ -32,4 +32,21 @@ function changeAuthStateRender(response, setIsFinishedWaiting, setWaiting) {
     setWaiting(false);
 }
 
-export {getHeight, changeAuthRender, changeAuthStateRender};
+function changeAuthStateRenderReaction(response, setIsFinishedWaiting, setWaiting, setIsTimerStart) {
+    if (response.message) {
+        console.log('render');
+        setIsFinishedWaiting(true);
+        setIsTimerStart(true);
+        return;
+    }
+    // waiting for other player
+    if (response.error.code === 'E005') {
+        console.log('waiting');
+        setWaiting(true);
+        return;
+    }
+    console.log('unauthorized');
+    setWaiting(false);
+}
+
+export {getHeight, changeAuthRender, changeAuthStateRender, changeAuthStateRenderReaction};
