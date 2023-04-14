@@ -110,7 +110,8 @@ function Draw() {
                 <Prompt fonttest="font-link-Heading" text={'Draw something that reminds you of your childhood'} relativeSize={smallPromptRelativeSize} height={getHeight(1, smallPromptRelativeSize)} width='80vw' left='10vw' top='68vh'/>
                 {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
                 <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
-                <DrawingArea setImageSrcFunc={setImageSrc} getImageURLFunc={getImageURL} height={getHeight(2, drawingRelativeSize)} width={windowSize.current[0]} lineWidth={10} startPos={getHeight(1, smallPromptRelativeSize) + 1} canvasRef={canvasRef}/>
+                {/* <DrawingArea setImageSrcFunc={setImageSrc} getImageURLFunc={getImageURL} height={getHeight(2, drawingRelativeSize)} width={windowSize.current[0]} lineWidth={10} startPos={getHeight(1, smallPromptRelativeSize) + 1} canvasRef={canvasRef}/> */}
+                <DrawingArea setImageSrcFunc={setImageSrc} getImageURLFunc={getImageURL} height={getHeight(2, drawingRelativeSize)} width={windowSize.current[0]} lineWidth={10} startPos={0} canvasRef={canvasRef}/>
             </div>;
         }
 

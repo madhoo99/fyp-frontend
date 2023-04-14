@@ -20,7 +20,7 @@ function Reaction() {
     const [isFinishedWaiting, setIsFinishedWaiting] = useState(false);
     const [waiting, setWaiting] = useState(false); // false indiciates no access, true indicates waiting
 
-    const timeGiven = 5;
+    const timeGiven = 30;
 
     const [time, setTime] = useState(timeGiven);
     const [isFinishedTimeOut, setIsFinishedTimeOut] = useState(false);
@@ -122,7 +122,7 @@ function Reaction() {
         } else {
             return <div>
                 <Prompt fonttest="font-link-Heading" text={'Yay!\nDo you see your drawing on the mirror?'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='10vh'/>
-                <Prompt fonttest="font-link-Heading" text={'React to the other user\'s drawing! Feel free to use gestures, facial expressions, or emojis.'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='30vh'/>
+                <Prompt fonttest="font-link-Heading" text={'React to the other user\'s drawing! Feel free to use gestures and facial expressions'} relativeSize={promptRelativeSize} height={getHeight(1, promptRelativeSize)} width='80vw' left='10vw' top='30vh'/>
                 {/* <HomeButton onClickFunc={onButtonClick} endRoute="/Lights" text="Lights" imageSrc="light-png.png" imageAlt="templogo" width={100} height={100}/>
                 <HomeButton onClickFunc={onButtonClick} endRoute="/Sounds" text="Sounds" imageSrc="sound-png.png" imageAlt="templogo" width={100} height={100}/> */}
                 <NormalButton fonttest="font-link" className='btn btn-warning' text='Choose an emoji' onClickFunc={onEmojiButtonClick} width='15vw' left='43vw' top='55vh' />
