@@ -29,17 +29,51 @@ function Name() {
             if (isFinishedWaiting) {
                 return;
             }
+
+            // --- original fetch ---
+            // fetch(BACKEND_LINK + '/auth' + '?state=' + String(state), {
+            //     method: 'GET',
+            //     credentials: 'include'
+            // })
+            // .then(response => response.json())
+            // .then(response => {
+            //     changeAuthRender(response, setIsFinishedWaiting);
+            // })
+            // .catch(error => {
+            //     console.error(error);
+            // });
+            // --- end original ---
+
+
+            // --- chatgpt changes to catch errors---
             fetch(BACKEND_LINK + '/auth' + '?state=' + String(state), {
                 method: 'GET',
-                credentials: 'include'
-            })
-            .then(response => response.json())
-            .then(response => {
-                changeAuthRender(response, setIsFinishedWaiting);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+                credentials: 'include', // to ensure cookies are sent with the request
+                headers: {
+                  'Content-Type': 'application/json',
+                  // If tokens are used in headers, specify them here. For example:
+                  // 'Authorization': 'Bearer ' + authToken,
+                },
+              })
+              .then(response => {
+                if (!response.ok) {
+                  // If we receive a status code that is not a success, we throw an error to catch later
+                  return response.json().then(body => {
+                    throw new Error('Server responded with a status: ' + response.status + ' ' + body.error);
+                  });
+                }
+                return response.json();
+              })
+              .then(data => {
+                // Handle the data from the server
+                console.log(data);
+              })
+              .catch(error => {
+                // Catch and log any errors
+                console.error('Error fetching /auth:', error.message);
+              });
+              
+
         }
         , 1000);
 
