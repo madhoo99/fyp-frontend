@@ -67,7 +67,7 @@ function Name() {
               .then(data => {
                 // Handle the data from the server
                 console.log(data);
-                changeAuthRender(response, setIsFinishedWaiting);
+                changeAuthRender(data, setIsFinishedWaiting);
               })
               .catch(error => {
                 // Catch and log any errors
